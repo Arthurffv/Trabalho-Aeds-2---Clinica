@@ -7,9 +7,6 @@
 #include "Paciente.h"
 #include "consulta.h"
 
-//
-// =================== BUSCAS SEQUENCIAIS ===================
-//
 
 Tmedico *Medico_buscaSequencial_PorId(FILE *in, int chave, FILE *log){
     rewind(in);
@@ -109,9 +106,6 @@ Tconsulta *Consulta_buscaSequencial_PorId(FILE *in, int chave, FILE *log){
     return NULL;
 }
 
-//
-// ===================== BUSCAS BINÁRIAS =====================
-//
 
 Tmedico *Medico_buscaBinaria_PorId(FILE *in, int chave, int inicio, int fim, FILE *log){
     int cod = -1;

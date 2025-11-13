@@ -27,7 +27,7 @@ static void mergeSortRecursivoMedico(
 
     FILE *tempFile = tmpfile();
     if (!tempFile) {
-        fprintf(stderr, "Erro ao criar arquivo temporário.\n");
+        fprintf(stderr, "Erro ao criar arquivo temporario.\n");
         return;
     }
 
@@ -68,7 +68,6 @@ static void mergeSortRecursivoMedico(
     }
 
     rewind(tempFile);
-
 
     for (int x = 0; x < k; x++) {
         fread(&regTemp, tam, 1, tempFile);

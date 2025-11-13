@@ -24,7 +24,7 @@ static void mergeSortRecursivoPaciente(
 
     FILE *tempFile = tmpfile();
     if (!tempFile) {
-        fprintf(stderr, "Erro ao criar arquivo temporário.\n");
+        fprintf(stderr, "Erro ao criar arquivo temporario.\n");
         return;
     }
 

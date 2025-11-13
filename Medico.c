@@ -32,9 +32,7 @@ Tmedico *le_medico(FILE *in) {
     return m;
 }
 
-// CORREÇÃO: Tipo de retorno 'size_t'
 size_t tamanho_registro_medico() {
-    // Retorna o tamanho como size_t
     return (size_t)(sizeof(int) + sizeof(char) * 50 + sizeof(char) * 20 + sizeof(char) * 30 + sizeof(char) * 15);
 }
 
@@ -42,8 +40,6 @@ void criar_base_medico_embaralhada(FILE *out, int tam) {
     int vet[tam];
     for (int i = 0; i < tam; i++) vet[i] = i + 1;
 
-    // CORREÇÃO: 'srand' removido. Chame-o apenas uma vez na 'main'.
-    // srand(time(NULL));
 
     for (int t = 0; t < tam; t++) {
         int i = rand() % tam, j = rand() % tam;
@@ -81,7 +77,7 @@ void atualizar_medico(FILE *in, char *crm, Tmedico *novo) {
     Tmedico *m;
     while ((m = le_medico(in)) != NULL) {
         if (strcmp(m->crm, crm) == 0) {
-            fseek(in, -(long)tamanho_registro_medico(), SEEK_CUR); // cast (long)
+            fseek(in, -(long)tamanho_registro_medico(), SEEK_CUR);
             salva_medico(novo, in);
             free(m);
             break;

@@ -8,7 +8,7 @@
 	<string.h>
 	<time.h>
 
-1762722081 source:d:\ufop\aeds 02\trabalho 01-aeds02\medico.c
+1763056599 source:d:\ufop\aeds 02\trabalho 01-aeds02\medico.c
 	"Medico.h"
 
 1762722081 d:\ufop\aeds 02\trabalho 01-aeds02\medico.h
@@ -48,13 +48,14 @@
 	"Medico.h"
 	"consulta.h"
 
-1762722409 source:d:\ufop\aeds 02\trabalho 01-aeds02\main.c
+1763057748 source:d:\ufop\aeds 02\trabalho 01-aeds02\main.c
 	"Medico.h"
 	"Paciente.h"
 	"consulta.h"
 	"Buscas.h"
 	"MergeSortMedico.h"
 	"MergeSortPaciente.h"
+	"MergeSortConsulta.h"
 	<stdio.h>
 	<stdlib.h>
 	<time.h>
@@ -67,7 +68,7 @@
 	<string.h>
 	<time.h>
 
-1762722484 source:d:\ufop\aeds 02\trabalho 01-aeds02\mergesortmedico.c
+1763055266 source:d:\ufop\aeds 02\trabalho 01-aeds02\mergesortmedico.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -88,7 +89,7 @@
 1762722010 d:\ufop\aeds 02\trabalho 01-aeds02\mergesortpaciente.h
 	<stdio.h>
 
-1762722806 source:d:\ufop\aeds 02\trabalho 01-aeds02\mergesortconsulta.c
+1762989300 source:d:\ufop\aeds 02\trabalho 01-aeds02\mergesortconsulta.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -98,4 +99,45 @@
 
 1762722371 d:\ufop\aeds 02\trabalho 01-aeds02\mergesortconsulta.h
 	<stdio.h>
+
+1762722081 d:\ufop\aeds 02\trabalho 01-aeds02\medico.c
+	"Medico.h"
+
+1762722038 d:\ufop\aeds 02\trabalho 01-aeds02\paciente.c
+	"Paciente.h"
+
+1762722112 d:\ufop\aeds 02\trabalho 01-aeds02\consulta.c
+	"consulta.h"
+
+1762289312 d:\ufop\aeds 02\trabalho 01-aeds02\buscas.c
+	<stdio.h>
+	<stdlib.h>
+	<time.h>
+	"Buscas.h"
+	"Medico.h"
+	"Paciente.h"
+	"consulta.h"
+
+1763055266 d:\ufop\aeds 02\trabalho 01-aeds02\mergesortmedico.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"Medico.h"
+	"MergeSortMedico.h"
+
+1762722732 d:\ufop\aeds 02\trabalho 01-aeds02\mergesortpaciente.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"Paciente.h"
+
+1762989300 d:\ufop\aeds 02\trabalho 01-aeds02\mergesortconsulta.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<time.h>
+	"consulta.h"
+	"MergeSortConsulta.h"
 

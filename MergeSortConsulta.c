@@ -26,7 +26,7 @@ static void mergeSortRecursivoConsulta(
 
     FILE *tempFile = tmpfile();
     if (!tempFile) {
-        fprintf(stderr, "Erro ao criar arquivo temporário.\n");
+        fprintf(stderr, "Erro ao criar arquivo temporario.\n");
         return;
     }
 
@@ -92,7 +92,7 @@ void mergeSortDiscoConsulta(
         fprintf(log, "\n------------------------------\n");
         fprintf(log, "Algoritmo: MergeSort (Consultas por ID)\n");
         fprintf(log, "Registros ordenados: %d\n", totalRegistros);
-        fprintf(log, "Tempo de execução: %.6f segundos\n", tempo);
+        fprintf(log, "Tempo de execucaÃ§o: %.6f segundos\n", tempo);
         fprintf(log, "------------------------------\n");
     }
 }

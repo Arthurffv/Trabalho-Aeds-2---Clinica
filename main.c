@@ -1,10 +1,10 @@
-#include "Medico.c"
-#include "Paciente.c"
-#include "consulta.c"
-#include "Buscas.c"
-#include "MergeSortMedico.c"
-#include "MergeSortPaciente.c"
-#include "MergeSortConsulta.c"
+#include "Medico.h"
+#include "Paciente.h"
+#include "consulta.h"
+#include "Buscas.h"
+#include "MergeSortMedico.h"
+#include "MergeSortPaciente.h"
+#include "MergeSortConsulta.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -25,7 +25,7 @@ void pausarTela()
     int c;
     while ((c = getchar()) != '\n' && c != EOF)
         ;
-    
+
 }
 
 int main()
@@ -35,30 +35,21 @@ int main()
     FILE *arq_medicos, *arq_pacientes, *arq_consultas;
     FILE *log_buscas, *log_ordenacao;
 
-    if ((arq_medicos = fopen("medicos.dat", "r+b")) == NULL)
-    {
         if ((arq_medicos = fopen("medicos.dat", "wb+")) == NULL)
         {
             ERROR("Erro ao criar/abrir arquivo medicos.dat");
             exit(1);
         }
-    }
-    if ((arq_pacientes = fopen("pacientes.dat", "r+b")) == NULL)
-    {
         if ((arq_pacientes = fopen("pacientes.dat", "wb+")) == NULL)
         {
             ERROR("Erro ao criar/abrir arquivo pacientes.dat");
             exit(1);
         }
-    }
-    if ((arq_consultas = fopen("consultas.dat", "r+b")) == NULL)
-    {
         if ((arq_consultas = fopen("consultas.dat", "wb+")) == NULL)
         {
             ERROR("Erro ao criar/abrir arquivo consultas.dat");
             exit(1);
         }
-    }
 
     if ((log_buscas = fopen("log_buscas.txt", "a")) == NULL)
     {
@@ -83,7 +74,7 @@ int main()
 
     if (tamMed == 0 && tamPac == 0 && tamCon == 0)
     {
-        printf("Bases de dados n�o encontradas ou vazias. Criando novas...\n");
+        printf("Bases de dados nao encontradas ou vazias. Criando novas...\n");
         tamMed = 1000;
         tamPac = 1000;
         tamCon = 1000;
@@ -416,7 +407,7 @@ int main()
 
                     printf("Digite o ID do Paciente: ");
                     scanf("%d", &id_pac);
-                    Tpaciente *pac = Paciente_buscaSequencial_PorId(arq_pacientes, id_pac, NULL);
+                    Tpaciente *pac = Paciente_buscaSequencial_PorId(arq_pacientes, id_pac, log_buscas);
                     if (pac == NULL)
                     {
                         ERROR("Paciente nao encontrado! Agendamento cancelado.");
@@ -429,7 +420,7 @@ int main()
                     printf("Digite o ID do Medico: ");
                     scanf("%d", &id_med);
 
-                    Tmedico *med = Medico_buscaSequencial_PorId(arq_medicos, id_med, NULL);
+                    Tmedico *med = Medico_buscaSequencial_PorId(arq_medicos, id_med, log_buscas);
                     if (med == NULL)
                     {
                         ERROR("Medico nao encontrado! Agendamento cancelado.");
@@ -469,7 +460,7 @@ int main()
                     printf("Digite o ID da consulta a ser editada: ");
                     scanf("%d", &id_con);
 
-                    Tconsulta *con_antiga = Consulta_buscaSequencial_PorId(arq_consultas, id_con, NULL);
+                    Tconsulta *con_antiga = Consulta_buscaSequencial_PorId(arq_consultas, id_con, log_buscas);
                     if (con_antiga == NULL)
                     {
                         ERROR("Consulta nao encontrada!");
@@ -502,7 +493,7 @@ int main()
                     printf("Digite o ID da consulta a ser excluida: ");
                     scanf("%d", &id_con);
 
-                    Tconsulta *con_check = Consulta_buscaSequencial_PorId(arq_consultas, id_con, NULL);
+                    Tconsulta *con_check = Consulta_buscaSequencial_PorId(arq_consultas, id_con, log_buscas);
                     if (con_check == NULL)
                     {
                         ERROR("Consulta nao encontrada!");

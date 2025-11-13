@@ -1,0 +1,6 @@
+
+---------------------------
+Consulta encontrada!
+Comparacoes Sequencial: 479 
+Tempo Sequencial: 0.000000 
+---------------------------
