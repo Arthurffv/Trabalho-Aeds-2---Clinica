@@ -31,9 +31,9 @@ Tmedico *Medico_buscaSequencial_PorId(FILE *in, int chave, FILE *log){
 
     clock_t fimT = clock();
     double total = (double)(fimT - inicioT) / CLOCKS_PER_SEC;
-    printf("Medico não encontrado\n");
+    printf("Medico nao encontrado\n");
     fprintf(log, "\n---------------------------");
-    fprintf(log, "\nMedico não encontrado!");
+    fprintf(log, "\nMedico nao encontrado!");
     fprintf(log, "\nComparacoes Sequencial: %d ", cont);
     fprintf(log, "\nTempo Sequencial: %f ", total);
     fprintf(log, "\n---------------------------\n");
@@ -64,9 +64,9 @@ Tpaciente *Paciente_buscaSequencial_PorId(FILE *in, int chave, FILE *log){
 
     clock_t fimT = clock();
     double total = (double)(fimT - inicioT) / CLOCKS_PER_SEC;
-    printf("Paciente não encontrado\n");
+    printf("Paciente nao encontrado\n");
     fprintf(log, "\n---------------------------");
-    fprintf(log, "\nPaciente não encontrado!");
+    fprintf(log, "\nPaciente nao encontrado!");
     fprintf(log, "\nComparacoes Sequencial: %d ", cont);
     fprintf(log, "\nTempo Sequencial: %f ", total);
     fprintf(log, "\n---------------------------\n");
@@ -97,9 +97,9 @@ Tconsulta *Consulta_buscaSequencial_PorId(FILE *in, int chave, FILE *log){
 
     clock_t fimT = clock();
     double total = (double)(fimT - inicioT) / CLOCKS_PER_SEC;
-    printf("Consulta não encontrada\n");
+    printf("Consulta nao encontrada\n");
     fprintf(log, "\n---------------------------");
-    fprintf(log, "\nConsulta não encontrada!");
+    fprintf(log, "\nConsulta nao encontrada!");
     fprintf(log, "\nComparacoes Sequencial: %d ", cont);
     fprintf(log, "\nTempo Sequencial: %f ", total);
     fprintf(log, "\n---------------------------\n");
@@ -143,7 +143,7 @@ Tmedico *Medico_buscaBinaria_PorId(FILE *in, int chave, int inicio, int fim, FIL
     clock_t fimT = clock();
     double total = (double)(fimT - inicioT) / CLOCKS_PER_SEC;
     fprintf(log, "\n---------------------------");
-    fprintf(log, "\nMedico não encontrado!");
+    fprintf(log, "\nMedico nao encontrado!");
     fprintf(log, "\nComparacoes Binaria: %d ", cont);
     fprintf(log, "\nTempo Binaria: %f ", total);
     fprintf(log, "\n---------------------------\n");
@@ -186,7 +186,7 @@ Tpaciente *Paciente_buscaBinaria_PorId(FILE *in, int chave, int inicio, int fim,
     clock_t fimT = clock();
     double total = (double)(fimT - inicioT) / CLOCKS_PER_SEC;
     fprintf(log, "\n---------------------------");
-    fprintf(log, "\nPaciente não encontrado!");
+    fprintf(log, "\nPaciente nao encontrado!");
     fprintf(log, "\nComparacoes Binaria: %d ", cont);
     fprintf(log, "\nTempo Binaria: %f ", total);
     fprintf(log, "\n---------------------------\n");
@@ -229,7 +229,7 @@ Tconsulta *Consulta_buscaBinaria_PorId(FILE *in, int chave, int inicio, int fim,
     clock_t fimT = clock();
     double total = (double)(fimT - inicioT) / CLOCKS_PER_SEC;
     fprintf(log, "\n---------------------------");
-    fprintf(log, "\nConsulta não encontrada!");
+    fprintf(log, "\nConsulta nao encontrada!");
     fprintf(log, "\nComparacoes Binaria: %d ", cont);
     fprintf(log, "\nTempo Binaria: %f ", total);
     fprintf(log, "\n---------------------------\n");

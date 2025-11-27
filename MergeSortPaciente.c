@@ -97,7 +97,7 @@ void mergeSortDiscoPaciente(
         fprintf(log, "\n------------------------------\n");
         fprintf(log, "Algoritmo: MergeSort (Pacientes por ID)\n");
         fprintf(log, "Registros ordenados: %d\n", totalRegistros);
-        fprintf(log, "Tempo de execução: %.6f segundos\n", tempo);
+        fprintf(log, "Tempo de execucao: %.6f segundos\n", tempo);
         fprintf(log, "------------------------------\n");
     }
 }

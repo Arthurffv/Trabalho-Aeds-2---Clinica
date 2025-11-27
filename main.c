@@ -1,10 +1,12 @@
-#include "Medico.h"
-#include "Paciente.h"
-#include "consulta.h"
-#include "Buscas.h"
-#include "MergeSortMedico.h"
-#include "MergeSortPaciente.h"
-#include "MergeSortConsulta.h"
+#include "Medico.c"
+#include "Paciente.c"
+#include "consulta.c"
+#include "Buscas.c"
+#include "MergeSortMedico.c"
+#include "MergeSortPaciente.c"
+#include "MergeSortConsulta.c"
+#include "SelecaoPorSubstituicao.c"
+#include "IntercalacaoOtimaConsulta.c"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,13 +21,16 @@ void limpar_tela_ansi()
     printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 }
 
+void limpar_buffer() {
+    int c;
+    while ((c = getchar()) != '\n' && c != EOF);
+}
+
 void pausarTela()
 {
     printf("\nPressione Enter para continuar...");
-    int c;
-    while ((c = getchar()) != '\n' && c != EOF)
-        ;
-
+    limpar_buffer();
+    getchar();
 }
 
 int main()
@@ -35,18 +40,17 @@ int main()
     FILE *arq_medicos, *arq_pacientes, *arq_consultas;
     FILE *log_buscas, *log_ordenacao;
 
-        if ((arq_medicos = fopen("medicos.dat", "wb+")) == NULL)
-        {
+        if ((arq_medicos = fopen("medicos.dat", "wb+")) == NULL) {
             ERROR("Erro ao criar/abrir arquivo medicos.dat");
             exit(1);
         }
-        if ((arq_pacientes = fopen("pacientes.dat", "wb+")) == NULL)
-        {
+
+        if ((arq_pacientes = fopen("pacientes.dat", "wb+")) == NULL) {
             ERROR("Erro ao criar/abrir arquivo pacientes.dat");
             exit(1);
         }
-        if ((arq_consultas = fopen("consultas.dat", "wb+")) == NULL)
-        {
+
+        if ((arq_consultas = fopen("consultas.dat", "wb+")) == NULL) {
             ERROR("Erro ao criar/abrir arquivo consultas.dat");
             exit(1);
         }
@@ -85,7 +89,8 @@ int main()
         pausarTela();
     } else {
         printf("Bases de dados carregadas com %d Medicos, %d Pacientes, %d Consultas.\n", tamMed, tamPac, tamCon);
-        pausarTela();
+        printf("\nPressione Enter para continuar...");
+        getchar();
     }
 
 
@@ -94,7 +99,7 @@ int main()
     {
         limpar_tela_ansi();
         printf("--------------------------- MENU ---------------------------\n");
-        printf("1 - Ordenar Bases (MergeSort Externo)\n");
+        printf("1 - Ordenar Bases (MergeSort Externo / Intercalacao)\n");
         printf("2 - Fazer Busca (Sequencial ou Binaria)\n");
         printf("3 - Listar Bases de Dados\n");
         printf("4 - Gerenciar Consultas (CRUD)\n");
@@ -102,7 +107,6 @@ int main()
         printf("------------------------------------------------------------\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &sair);
-
 
         switch (sair)
         {
@@ -112,16 +116,15 @@ int main()
             int esc1 = 0;
             do
             {
-                printf("----------------- Ordenacao (MergeSort) -----------------\n");
+                printf("----------------- Ordenacao -----------------\n");
                 printf("Qual base de dados deseja ordenar?\n");
                 printf("1 - Medicos\n");
                 printf("2 - Pacientes\n");
                 printf("3 - Consultas\n");
                 printf("4 - Voltar\n");
-                printf("---------------------------------------------------------\n");
+                printf("---------------------------------------------\n");
                 printf("Escolha uma opcao: ");
                 scanf("%d", &esc1);
-
 
                 if (esc1 == 4)
                     break;
@@ -144,14 +147,55 @@ int main()
                     printf("...Ordenacao de Pacientes concluida!\n");
                     pausarTela();
                     break;
+                
                 case 3:
+                {
                     limpar_tela_ansi();
-                    printf("Iniciando MergeSort para Consultas (%d registros)...\n", tamCon);
-                    rewind(arq_consultas);
-                    mergeSortDiscoConsulta(arq_consultas, tamCon, log_ordenacao);
-                    printf("...Ordenacao de Consultas concluida!\n");
+                    int tipoAlg = 0;
+                    printf("----------------- Algoritmo para Consultas -----------------\n");
+                    printf("1 - MergeSort Padrao (Recursivo)\n");
+                    printf("2 - Intercalacao Otima (Selecao com Substituicao)\n");
+                    printf("------------------------------------------------------------\n");
+                    printf("Escolha o algoritmo: ");
+                    scanf("%d", &tipoAlg);
+
+                    if (tipoAlg == 1) {
+                        printf("\nIniciando MergeSort Padrao (%d registros)...\n", tamCon);
+                        rewind(arq_consultas);
+                        mergeSortDiscoConsulta(arq_consultas, tamCon, log_ordenacao);
+                        printf("...Ordenacao de Consultas concluida!\n");
+                    } 
+                    else if (tipoAlg == 2) {
+                        printf("\nIniciando Intercalacao Otima (%d registros)...\n", tamCon);
+                        rewind(arq_consultas);
+                        
+                        int M = 50; 
+
+
+                        ordenarPorIntercalacaoOtimaConsulta(arq_consultas, M, tamCon, log_ordenacao);
+
+                        
+                        fclose(arq_consultas);
+                        remove("consultas.dat");
+                        if (rename("consultas_ordenadas.dat", "consultas.dat") != 0) {
+                             ERROR("Erro ao atualizar o arquivo principal consultas.dat");
+                        }
+
+                        arq_consultas = fopen("consultas.dat", "r+b");
+                        if (!arq_consultas) {
+                             ERROR("Erro Fatal: Nao foi possivel reabrir consultas.dat");
+                             exit(1);
+                        }
+
+                        printf("...Ordenacao de Consultas (Intercalacao Otima) concluida!\n");
+                    } 
+                    else {
+                        printf("Opcao invalida.\n");
+                    }
                     pausarTela();
                     break;
+                }
+
                 default:
                     ERROR("Opcao invalida!");
                     pausarTela();
@@ -395,10 +439,13 @@ int main()
                 printf("-------------------------------------------------------\n");
                 printf("Escolha uma opcao: ");
                 scanf("%d", &esc4);
+                
+                // Limpeza basica de buffer antes de entrar nos cases que usam fgets
+                limpar_buffer();
 
                 switch (esc4)
                 {
-                case 1:
+                case 1: // CRIAR
                 {
                     limpar_tela_ansi();
                     printf("--- Agendar Nova Consulta ---\n");
@@ -407,6 +454,8 @@ int main()
 
                     printf("Digite o ID do Paciente: ");
                     scanf("%d", &id_pac);
+                    limpar_buffer();
+
                     Tpaciente *pac = Paciente_buscaSequencial_PorId(arq_pacientes, id_pac, log_buscas);
                     if (pac == NULL)
                     {
@@ -419,6 +468,7 @@ int main()
 
                     printf("Digite o ID do Medico: ");
                     scanf("%d", &id_med);
+                    limpar_buffer();
 
                     Tmedico *med = Medico_buscaSequencial_PorId(arq_medicos, id_med, log_buscas);
                     if (med == NULL)
@@ -432,9 +482,11 @@ int main()
 
                     printf("Digite a Data (DD/MM/AAAA): ");
                     scanf("%10s", data);
+                    limpar_buffer();
 
                     printf("Digite a Hora (HH:MM): ");
                     scanf("%5s", hora);
+                    limpar_buffer();
 
                     printf("Digite as Observacoes (max 199 chars): ");
                     fgets(obs, 199, stdin);
@@ -452,13 +504,14 @@ int main()
                     pausarTela();
                     break;
                 }
-                case 2:
+                case 2: // ATUALIZAR
                 {
                     limpar_tela_ansi();
                     printf("--- Editar Observacoes da Consulta ---\n");
                     int id_con;
                     printf("Digite o ID da consulta a ser editada: ");
                     scanf("%d", &id_con);
+                    limpar_buffer();
 
                     Tconsulta *con_antiga = Consulta_buscaSequencial_PorId(arq_consultas, id_con, log_buscas);
                     if (con_antiga == NULL)
@@ -477,7 +530,6 @@ int main()
                     novas_obs[strcspn(novas_obs, "\n")] = 0;
 
                     strcpy(con_antiga->observacoes, novas_obs);
-
                     atualizar_consulta(arq_consultas, id_con, con_antiga);
 
                     printf("Observacoes atualizadas com sucesso!\n");
@@ -485,13 +537,14 @@ int main()
                     pausarTela();
                     break;
                 }
-                case 3:
+                case 3: // EXCLUIR
                 {
                     limpar_tela_ansi();
                     printf("--- Cancelar (Excluir) Consulta ---\n");
                     int id_con;
                     printf("Digite o ID da consulta a ser excluida: ");
                     scanf("%d", &id_con);
+                    limpar_buffer();
 
                     Tconsulta *con_check = Consulta_buscaSequencial_PorId(arq_consultas, id_con, log_buscas);
                     if (con_check == NULL)
@@ -517,14 +570,9 @@ int main()
 
                     if (remove("consultas.dat") != 0) {
                         ERROR("Erro ao remover consultas.dat");
-                        pausarTela();
-                        break;
                     }
-
                     if (rename("consultas.tmp", "consultas.dat") != 0) {
                         ERROR("Erro ao renomear consultas.tmp");
-                        pausarTela();
-                        break;
                     }
 
                     arq_consultas = fopen("consultas.dat", "r+b");

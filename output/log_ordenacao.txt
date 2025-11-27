@@ -16,3 +16,21 @@ Algoritmo: MergeSort (Pacientes por ID)
 Registros ordenados: 1000
 Tempo de execução: 0.899000 segundos
 ------------------------------
+
+------------------------------
+Algoritmo: MergeSort (Médicos por ID)
+Registros ordenados: 1000
+Tempo de execução: 0.971000 segundos
+------------------------------
+
+------------------------------
+Algoritmo: MergeSort (Médicos por ID)
+Registros ordenados: 1000
+Tempo de execução: 0.921000 segundos
+------------------------------
+
+------------------------------
+Algoritmo: MergeSort (Consultas por ID)
+Registros ordenados: 1001
+Tempo de execucaÃ§o: 0.951000 segundos
+------------------------------
