@@ -1,8 +1,8 @@
-#ifndef SELECAO_SUBSTITUICAO_CONSULTA_H_INCLUDED
-#define SELECAO_SUBSTITUICAO_CONSULTA_H_INCLUDED
+#ifndef INTERCALACAO_OTIMA_CONSULTA_H
+#define INTERCALACAO_OTIMA_CONSULTA_H
 
 #include <stdio.h>
 
-int selecaoSubstituicaoConsulta(FILE *arqConsultas, int memDisponivel, int totalRegistros, FILE *log);
+int ordenarPorIntercalacaoOtimaConsulta(FILE *arqConsultas, int memDisponivel, int totalRegistros, int F, FILE *log);
 
 #endif

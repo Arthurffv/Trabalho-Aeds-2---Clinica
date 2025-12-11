@@ -55,16 +55,15 @@ int main()
             exit(1);
         }
 
-    if ((log_buscas = fopen("log_buscas.txt", "a")) == NULL)
-    {
+    if ((log_buscas = fopen("log_buscas.txt", "a")) == NULL) {
         ERROR("Erro ao abrir arquivo log_buscas.txt");
         exit(1);
     }
-    if ((log_ordenacao = fopen("log_ordenacao.txt", "a")) == NULL)
-    {
+    if ((log_ordenacao = fopen("log_ordenacao.txt", "a")) == NULL) {
         ERROR("Erro ao abrir arquivo log_ordenacao.txt");
         exit(1);
     }
+
 
     fseek(arq_medicos, 0, SEEK_END);
     int tamMed = ftell(arq_medicos) / tamanho_registro_medico();
@@ -74,7 +73,6 @@ int main()
 
     fseek(arq_consultas, 0, SEEK_END);
     int tamCon = ftell(arq_consultas) / tamanho_registro_consulta();
-
 
     if (tamMed == 0 && tamPac == 0 && tamCon == 0)
     {
@@ -92,7 +90,6 @@ int main()
         printf("\nPressione Enter para continuar...");
         getchar();
     }
-
 
     int sair = 1;
     do
@@ -126,8 +123,7 @@ int main()
                 printf("Escolha uma opcao: ");
                 scanf("%d", &esc1);
 
-                if (esc1 == 4)
-                    break;
+                if (esc1 == 4) break;
 
                 switch (esc1)
                 {
@@ -169,12 +165,12 @@ int main()
                         printf("\nIniciando Intercalacao Otima (%d registros)...\n", tamCon);
                         rewind(arq_consultas);
                         
-                        int M = 50; 
-
-
-                        ordenarPorIntercalacaoOtimaConsulta(arq_consultas, M, tamCon, log_ordenacao);
-
+                        int M = 10;
+                        int F = 5;
                         
+
+                        ordenarPorIntercalacaoOtimaConsulta(arq_consultas, M, tamCon, F, log_ordenacao);
+
                         fclose(arq_consultas);
                         remove("consultas.dat");
                         if (rename("consultas_ordenadas.dat", "consultas.dat") != 0) {
@@ -219,9 +215,7 @@ int main()
                 printf("Escolha uma opcao: ");
                 scanf("%d", &esc2);
 
-
-                if (esc2 == 3)
-                    break;
+                if (esc2 == 3) break;
 
                 if (esc2 == 1)
                 {
@@ -238,8 +232,7 @@ int main()
                         printf("Escolha uma opcao: ");
                         scanf("%d", &esc_seq);
 
-                        if (esc_seq == 4)
-                            break;
+                        if (esc_seq == 4) break;
 
                         int id_busca;
                         printf("Digite o ID que deseja buscar: ");
@@ -250,14 +243,11 @@ int main()
                         case 1:
                         {
                             Tmedico *med = Medico_buscaSequencial_PorId(arq_medicos, id_busca, log_buscas);
-                            if (med)
-                            {
+                            if (med) {
                                 printf("--- Medico Encontrado! ---\n");
                                 printf("ID: %d | Nome: %s | CRM: %s\n", med->id, med->nome, med->crm);
                                 free(med);
-                            }
-                            else
-                            {
+                            } else {
                                 ERROR("Medico nao encontrado.");
                             }
                             pausarTela();
@@ -266,14 +256,11 @@ int main()
                         case 2:
                         {
                             Tpaciente *pac = Paciente_buscaSequencial_PorId(arq_pacientes, id_busca, log_buscas);
-                            if (pac)
-                            {
+                            if (pac) {
                                 printf("--- Paciente Encontrado! ---\n");
                                 printf("ID: %d | Nome: %s | CPF: %s\n", pac->id, pac->nome, pac->cpf);
                                 free(pac);
-                            }
-                             else
-                            {
+                            } else {
                                 ERROR("Paciente nao encontrado.");
                             }
                             pausarTela();
@@ -282,14 +269,11 @@ int main()
                         case 3:
                         {
                             Tconsulta *con = Consulta_buscaSequencial_PorId(arq_consultas, id_busca, log_buscas);
-                            if (con)
-                            {
+                            if (con) {
                                 printf("--- Consulta Encontrada! ---\n");
                                 printf("ID: %d | Data: %s | ID Paciente: %d | ID Medico: %d\n", con->id, con->data, con->id_paciente, con->id_medico);
                                 free(con);
-                            }
-                             else
-                            {
+                            } else {
                                 ERROR("Consulta nao encontrada.");
                             }
                             pausarTela();
@@ -314,9 +298,7 @@ int main()
                         printf("Escolha uma opcao: ");
                         scanf("%d", &esc_bin);
 
-
-                        if (esc_bin == 4)
-                            break;
+                        if (esc_bin == 4) break;
 
                         int id_busca;
                         printf("Digite o ID que deseja buscar: ");
@@ -327,14 +309,11 @@ int main()
                         case 1:
                         {
                             Tmedico *med = Medico_buscaBinaria_PorId(arq_medicos, id_busca, 0, tamMed - 1, log_buscas);
-                            if (med)
-                            {
+                            if (med) {
                                 printf("--- Medico Encontrado! ---\n");
                                 printf("ID: %d | Nome: %s | CRM: %s\n", med->id, med->nome, med->crm);
                                 free(med);
-                            }
-                            else
-                            {
+                            } else {
                                 ERROR("Medico nao encontrado.");
                             }
                             pausarTela();
@@ -343,14 +322,11 @@ int main()
                         case 2:
                         {
                             Tpaciente *pac = Paciente_buscaBinaria_PorId(arq_pacientes, id_busca, 0, tamPac - 1, log_buscas);
-                            if (pac)
-                            {
+                            if (pac) {
                                 printf("--- Paciente Encontrado! ---\n");
                                 printf("ID: %d | Nome: %s | CPF: %s\n", pac->id, pac->nome, pac->cpf);
                                 free(pac);
-                            }
-                             else
-                            {
+                            } else {
                                 ERROR("Paciente nao encontrado.");
                             }
                             pausarTela();
@@ -359,14 +335,11 @@ int main()
                         case 3:
                         {
                             Tconsulta *con = Consulta_buscaBinaria_PorId(arq_consultas, id_busca, 0, tamCon - 1, log_buscas);
-                            if (con)
-                            {
+                            if (con) {
                                 printf("--- Consulta Encontrada! ---\n");
                                 printf("ID: %d | Data: %s | ID Paciente: %d | ID Medico: %d\n", con->id, con->data, con->id_paciente, con->id_medico);
                                 free(con);
-                            }
-                             else
-                            {
+                            } else {
                                 ERROR("Consulta nao encontrada.");
                             }
                             pausarTela();
@@ -375,7 +348,6 @@ int main()
                         }
                     } while (esc_bin != 4);
                 }
-
             } while (esc2 != 3);
             break;
         }
@@ -440,12 +412,11 @@ int main()
                 printf("Escolha uma opcao: ");
                 scanf("%d", &esc4);
                 
-                // Limpeza basica de buffer antes de entrar nos cases que usam fgets
                 limpar_buffer();
 
                 switch (esc4)
                 {
-                case 1: // CRIAR
+                case 1:
                 {
                     limpar_tela_ansi();
                     printf("--- Agendar Nova Consulta ---\n");
@@ -457,8 +428,7 @@ int main()
                     limpar_buffer();
 
                     Tpaciente *pac = Paciente_buscaSequencial_PorId(arq_pacientes, id_pac, log_buscas);
-                    if (pac == NULL)
-                    {
+                    if (pac == NULL) {
                         ERROR("Paciente nao encontrado! Agendamento cancelado.");
                         pausarTela();
                         break;
@@ -471,8 +441,7 @@ int main()
                     limpar_buffer();
 
                     Tmedico *med = Medico_buscaSequencial_PorId(arq_medicos, id_med, log_buscas);
-                    if (med == NULL)
-                    {
+                    if (med == NULL) {
                         ERROR("Medico nao encontrado! Agendamento cancelado.");
                         pausarTela();
                         break;
@@ -504,7 +473,7 @@ int main()
                     pausarTela();
                     break;
                 }
-                case 2: // ATUALIZAR
+                case 2:
                 {
                     limpar_tela_ansi();
                     printf("--- Editar Observacoes da Consulta ---\n");
@@ -514,8 +483,7 @@ int main()
                     limpar_buffer();
 
                     Tconsulta *con_antiga = Consulta_buscaSequencial_PorId(arq_consultas, id_con, log_buscas);
-                    if (con_antiga == NULL)
-                    {
+                    if (con_antiga == NULL) {
                         ERROR("Consulta nao encontrada!");
                         pausarTela();
                         break;
@@ -537,7 +505,7 @@ int main()
                     pausarTela();
                     break;
                 }
-                case 3: // EXCLUIR
+                case 3:
                 {
                     limpar_tela_ansi();
                     printf("--- Cancelar (Excluir) Consulta ---\n");
@@ -547,8 +515,7 @@ int main()
                     limpar_buffer();
 
                     Tconsulta *con_check = Consulta_buscaSequencial_PorId(arq_consultas, id_con, log_buscas);
-                    if (con_check == NULL)
-                    {
+                    if (con_check == NULL) {
                         ERROR("Consulta nao encontrada!");
                         pausarTela();
                         break;
@@ -556,8 +523,7 @@ int main()
                     free(con_check);
 
                     FILE *temp_con = fopen("consultas.tmp", "wb");
-                    if (temp_con == NULL)
-                    {
+                    if (temp_con == NULL) {
                         ERROR("Erro ao criar arquivo temporario!");
                         pausarTela();
                         break;
@@ -576,8 +542,7 @@ int main()
                     }
 
                     arq_consultas = fopen("consultas.dat", "r+b");
-                    if (arq_consultas == NULL)
-                    {
+                    if (arq_consultas == NULL) {
                         ERROR("ERRO FATAL: Nao foi possivel reabrir consultas.dat!");
                         exit(1);
                     }

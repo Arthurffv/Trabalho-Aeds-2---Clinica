@@ -34,3 +34,173 @@ Algoritmo: MergeSort (Consultas por ID)
 Registros ordenados: 1001
 Tempo de execucaço: 0.951000 segundos
 ------------------------------
+
+------------------------------
+Algoritmo: MergeSort (Consultas por ID)
+Registros ordenados: 1000
+Tempo de execucaço: 0.827000 segundos
+------------------------------
+
+--------------11 Execução----------------
+Algoritmo: Seleção com Substituição (Corridas de Consultas)
+Tempo de Execução: 0.055000 segundos
+Comparações: 34828
+Número de corridas geradas: 11
+Arquivos gerados: run_consultas_0.dat, ...
+------------------------------
+
+------------------------------
+Algoritmo: Intercalação Ótima (Consultas)
+Tempo de Execução: 0.020000 segundos
+Comparações: 1036
+Registros escritos: 1036
+Arquivo de saída: consultas_ordenadas.dat
+------------------------------
+
+Tempo total de ordenacao (Consultas): 0.075000 segundos
+
+--------------50 Execução----------------
+Algoritmo: Seleção com Substituição (Corridas de Consultas)
+Tempo de Execução: 0.092000 segundos
+Comparações: 7116
+Número de corridas geradas: 50
+Arquivos gerados: run_consultas_0.dat, ...
+------------------------------
+
+------------------------------
+Algoritmo: Intercalação Ótima (Consultas)
+Tempo de Execução: 0.017000 segundos
+Comparações: 1009
+Registros escritos: 1009
+Arquivo de saída: consultas_ordenadas.dat
+------------------------------
+
+Tempo total de ordenacao (Consultas): 0.110000 segundos
+
+------------------------------
+Algoritmo: MergeSort (Consultas por ID)
+Registros ordenados: 1000
+Tempo de execucaço: 0.809000 segundos
+------------------------------
+
+--------------1 Execução----------------
+Algoritmo: Seleção com Substituição (Partições de Consultas)
+Tempo de Execução: 0.014000 segundos
+Comparações: 9955
+Número de corridas geradas: 1
+Arquivos gerados: run_consultas_0.dat, ...
+------------------------------
+
+Tempo total de ordenacao (Consultas - Otima): 0.015000 segundos
+
+--------------51 Execução----------------
+Algoritmo: Seleção com Substituição (Partições de Consultas)
+Tempo de Execução: 0.081000 segundos
+Comparações: 6934
+Número de corridas geradas: 51
+Arquivos gerados: run_consultas_0.dat, ...
+------------------------------
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo0.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo1.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo2.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo3.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo4.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo5.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo6.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo7.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo8.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo9.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo10.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo11.dat
+Rodada 0: Intercalando 3 arquivos em temp_rodada0_grupo12.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo0.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo1.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo2.dat
+Rodada 1: Intercalando 1 arquivos em temp_rodada1_grupo3.dat
+Rodada 2: Intercalando 4 arquivos em temp_rodada2_grupo0.dat
+
+Tempo total de ordenacao (Consultas - Otima): 0.157000 segundos
+
+--------------52 Execução----------------
+Algoritmo: Seleção com Substituição (Partições de Consultas)
+Tempo de Execução: 0.078000 segundos
+Comparações: 7017
+Número de corridas geradas: 52
+Arquivos gerados: run_consultas_0.dat, ...
+------------------------------
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo0.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo1.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo2.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo3.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo4.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo5.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo6.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo7.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo8.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo9.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo10.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo11.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo12.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo0.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo1.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo2.dat
+Rodada 1: Intercalando 1 arquivos em temp_rodada1_grupo3.dat
+Rodada 2: Intercalando 4 arquivos em temp_rodada2_grupo0.dat
+
+Tempo total de ordenacao (Consultas - Otima): 0.242000 segundos
+
+--------------50 Execucao----------------
+Algoritmo: Selecao com Substituicao (Partições de Consultas)
+Tempo de Execucao: 0.124000 segundos
+Comparacoes: 7003
+Numero de corridas geradas: 50
+Arquivos gerados: run_consultas_0.dat, ...
+------------------------------
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo0.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo1.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo2.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo3.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo4.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo5.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo6.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo7.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo8.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo9.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo10.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo11.dat
+Rodada 0: Intercalando 2 arquivos em temp_rodada0_grupo12.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo0.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo1.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo2.dat
+Rodada 1: Intercalando 1 arquivos em temp_rodada1_grupo3.dat
+Rodada 2: Intercalando 4 arquivos em temp_rodada2_grupo0.dat
+
+Tempo total de ordenacao (Consultas - Otima): 0.215000 segundos
+
+--------------50 Execucao----------------
+Algoritmo: Selecao com Substituicao (Partições de Consultas)
+Tempo de Execucao: 0.123000 segundos
+Comparacoes: 7039
+Numero de corridas geradas: 50
+Arquivos gerados: run_consultas_0.dat, ...
+------------------------------
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo0.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo1.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo2.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo3.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo4.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo5.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo6.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo7.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo8.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo9.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo10.dat
+Rodada 0: Intercalando 4 arquivos em temp_rodada0_grupo11.dat
+Rodada 0: Intercalando 2 arquivos em temp_rodada0_grupo12.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo0.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo1.dat
+Rodada 1: Intercalando 4 arquivos em temp_rodada1_grupo2.dat
+Rodada 1: Intercalando 1 arquivos em temp_rodada1_grupo3.dat
+Rodada 2: Intercalando 4 arquivos em temp_rodada2_grupo0.dat
+
+Tempo total de ordenacao (Consultas - Otima): 0.190000 segundos

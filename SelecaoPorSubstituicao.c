@@ -122,11 +122,11 @@ int selecaoSubstituicaoConsulta(FILE *arqConsultas, int memDisponivel, int total
     double tempo_execucao = ((double)(fimT - inicioT)) / CLOCKS_PER_SEC;
     
     if (log != NULL) {
-        fprintf(log, "\n--------------%d Execução----------------\n", numRuns);
-        fprintf(log, "Algoritmo: Seleção com Substituição (Corridas de Consultas)\n");
-        fprintf(log, "Tempo de Execução: %.6f segundos\n", tempo_execucao);
-        fprintf(log, "Comparações: %ld\n", comparacoes);
-        fprintf(log, "Número de corridas geradas: %d\n", numRuns);
+        fprintf(log, "\n--------------%d Execucao----------------\n", numRuns);
+        fprintf(log, "Algoritmo: Selecao com Substituicao (Partições de Consultas)\n");
+        fprintf(log, "Tempo de Execucao: %.6f segundos\n", tempo_execucao);
+        fprintf(log, "Comparacoes: %ld\n", comparacoes);
+        fprintf(log, "Numero de corridas geradas: %d\n", numRuns);
         fprintf(log, "Arquivos gerados: run_consultas_0.dat, ...\n");
         fprintf(log, "------------------------------\n");
     }
