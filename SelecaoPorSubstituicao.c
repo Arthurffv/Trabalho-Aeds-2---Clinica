@@ -25,7 +25,8 @@ int selecaoSubstituicaoConsulta(FILE *arqConsultas, int memDisponivel, int total
     int numRuns = 0;
     int registrosProcessados = 0;
     int registrosLidos = 0;
-    
+
+    //carregamento M registros
     for (int i = 0; i < memDisponivel && registrosLidos < totalRegistros; i++) {
         Tconsulta *c = le_consulta(arqConsultas);
         if (c) {
@@ -37,6 +38,7 @@ int selecaoSubstituicaoConsulta(FILE *arqConsultas, int memDisponivel, int total
         }
     }
     
+
     while (registrosProcessados < totalRegistros) {
         numRuns++;
         char nomeParticao[100];
@@ -67,6 +69,7 @@ int selecaoSubstituicaoConsulta(FILE *arqConsultas, int memDisponivel, int total
             int minIndice = -1;
             int minId = INT_MAX;
             
+            //seleção de menor registro ativo
             for (int i = 0; i < memDisponivel; i++) {
                 if (!congelado[i]) {
                     comparacoes++;
@@ -81,6 +84,7 @@ int selecaoSubstituicaoConsulta(FILE *arqConsultas, int memDisponivel, int total
                 break;
             }
             
+
             salva_consulta(&reservatorio[minIndice], arqSaida);
             ultimoId = reservatorio[minIndice].id;
             registrosProcessados++;
@@ -91,6 +95,8 @@ int selecaoSubstituicaoConsulta(FILE *arqConsultas, int memDisponivel, int total
                     reservatorio[minIndice] = *novaC;
                     free(novaC);
                     registrosLidos++;
+
+                    //congelamento
                     if (reservatorio[minIndice].id < ultimoId) {
                         congelado[minIndice] = 1;
                         registrosAtivos--;
@@ -107,6 +113,7 @@ int selecaoSubstituicaoConsulta(FILE *arqConsultas, int memDisponivel, int total
         
         fclose(arqSaida);
         
+
         for (int i = 0; i < memDisponivel; i++) {
 
             if (registrosProcessados < totalRegistros)

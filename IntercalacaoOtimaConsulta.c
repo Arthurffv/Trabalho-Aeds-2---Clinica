@@ -41,7 +41,7 @@ int encontrarMenorIdConsulta(ArquivoEntradaConsulta *arquivos, int numArquivos) 
     return menorIndice;
 }
 
-
+//aqui intercala tudo de uma vez
 int intercalarArquivosConsulta(char **nomesArquivos, int numArquivos, char *nomeSaida, FILE *log) {
     ArquivoEntradaConsulta *arquivos = malloc(numArquivos * sizeof(ArquivoEntradaConsulta));
     if (!arquivos) return -1;
@@ -90,6 +90,7 @@ int intercalarArquivosConsulta(char **nomesArquivos, int numArquivos, char *nome
     return registrosEscritos;
 }
 
+//aqui intercala de F-1
 int intercalacaoOtimaConsulta(char **particoes, int numParticoes, int F, char *nomeSaida, FILE *log) {
     if (numParticoes <= 0) return -1;
     
@@ -152,7 +153,7 @@ int intercalacaoOtimaConsulta(char **particoes, int numParticoes, int F, char *n
     return 1;
 }
 
-
+//aqui coredena tudo usando as funções a cima e junta a seleçãoPorSubtituição
 int ordenarPorIntercalacaoOtimaConsulta(FILE *arqConsultas, int memDisponivel, int totalRegistros, int F, FILE *log) {
     clock_t inicioT = clock();
     
