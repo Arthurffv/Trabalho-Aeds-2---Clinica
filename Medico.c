@@ -94,4 +94,3 @@ void excluir_medico(FILE *in, char *crm, FILE *temp) {
         free(m);
     }
 }
-

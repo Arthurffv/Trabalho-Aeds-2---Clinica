@@ -7,6 +7,7 @@
 #include "MergeSortConsulta.c"
 #include "SelecaoPorSubstituicao.c"
 #include "IntercalacaoOtimaConsulta.c"
+#include "hash_consulta.c"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -40,20 +41,20 @@ int main()
     FILE *arq_medicos, *arq_pacientes, *arq_consultas;
     FILE *log_buscas, *log_ordenacao;
 
-        if ((arq_medicos = fopen("medicos.dat", "wb+")) == NULL) {
-            ERROR("Erro ao criar/abrir arquivo medicos.dat");
-            exit(1);
-        }
+    if ((arq_medicos = fopen("medicos.dat", "wb+")) == NULL) {
+        ERROR("Erro ao criar/abrir arquivo medicos.dat");
+        exit(1);
+    }
 
-        if ((arq_pacientes = fopen("pacientes.dat", "wb+")) == NULL) {
-            ERROR("Erro ao criar/abrir arquivo pacientes.dat");
-            exit(1);
-        }
+    if ((arq_pacientes = fopen("pacientes.dat", "wb+")) == NULL) {
+        ERROR("Erro ao criar/abrir arquivo pacientes.dat");
+        exit(1);
+    }
 
-        if ((arq_consultas = fopen("consultas.dat", "wb+")) == NULL) {
-            ERROR("Erro ao criar/abrir arquivo consultas.dat");
-            exit(1);
-        }
+    if ((arq_consultas = fopen("consultas.dat", "wb+")) == NULL) {
+        ERROR("Erro ao criar/abrir arquivo consultas.dat");
+        exit(1);
+    }
 
     if ((log_buscas = fopen("log_buscas.txt", "a")) == NULL) {
         ERROR("Erro ao abrir arquivo log_buscas.txt");
@@ -63,7 +64,6 @@ int main()
         ERROR("Erro ao abrir arquivo log_ordenacao.txt");
         exit(1);
     }
-
 
     fseek(arq_medicos, 0, SEEK_END);
     int tamMed = ftell(arq_medicos) / tamanho_registro_medico();
@@ -99,7 +99,8 @@ int main()
         printf("1 - Ordenar Bases (MergeSort Externo / Intercalacao)\n");
         printf("2 - Fazer Busca (Sequencial ou Binaria)\n");
         printf("3 - Listar Bases de Dados\n");
-        printf("4 - Gerenciar Consultas (CRUD)\n");
+        printf("4 - Gerenciar Consultas (CRUD Sequencial)\n");
+        printf("5 - Gerenciar Consultas (HASH com Reutilizacao de Espaco)\n");
         printf("0 - Sair\n");
         printf("------------------------------------------------------------\n");
         printf("Escolha uma opcao: ");
@@ -168,7 +169,6 @@ int main()
                         int M = 10;
                         int F = 5;
                         
-
                         ordenarPorIntercalacaoOtimaConsulta(arq_consultas, M, tamCon, F, log_ordenacao);
 
                         fclose(arq_consultas);
@@ -560,6 +560,97 @@ int main()
                     break;
                 }
             } while (esc4 != 4);
+            break;
+        }
+
+        case 5: // GERENCIAMENTO VIA HASH COM CÓPIA TEMPORÁRIA
+        {
+            limpar_tela_ansi();
+            printf("--- Gerenciamento de Consultas via HASH (Base Temporaria) ---\n");
+            
+            // 1. Criar os arquivos temporários do zero para esta sessão
+            criarTabelaHash("temp_hash.dat", "temp_overflow.dat");
+
+            FILE *h = fopen("temp_hash.dat", "rb+");
+            FILE *o = fopen("temp_overflow.dat", "rb+");
+
+            if (!h || !o) {
+                ERROR("Erro ao criar base temporaria de Hash.");
+                break;
+            }
+
+            // 2. Migrar os dados atuais do arquivo consultas.dat para a Hash
+            printf("Importando dados de consultas.dat para a estrutura Hash...\n");
+            rewind(arq_consultas);
+            Tconsulta *c_migra;
+            int cont_migra = 0;
+            while ((c_migra = le_consulta(arq_consultas)) != NULL) {
+                inserir_Hash(h, o, c_migra);
+                free(c_migra);
+                cont_migra++;
+            }
+            printf("Migracao concluida! %d registros prontos para teste.\n", cont_migra);
+
+            int esc5 = 0;
+            do {
+                printf("\n--- Menu Hash (Testando Reutilizacao de Espaco) ---\n");
+                printf("1 - Inserir Consulta (Teste de Colisao)\n");
+                printf("2 - Buscar Consulta\n");
+                printf("3 - Remover Consulta (Liberar espaco na Free List)\n");
+                printf("4 - Listar Hash (Ver como os dados estao espalhados)\n");
+                printf("5 - Voltar e APAGAR base temporaria\n");
+                printf("Escolha: ");
+                scanf("%d", &esc5);
+
+                switch(esc5) {
+                    case 1: {
+                        int id;
+                        printf("ID da nova consulta: "); scanf("%d", &id);
+                        Tconsulta *nova = consulta(id, "04/02/2026", "14:00", 1, 1, "Insercao via Hash");
+                        inserir_Hash(h, o, nova);
+                        printf("Inserido! Se o ID for o mesmo de um excluido, o espaco foi reciclado.\n");
+                        free(nova);
+                        break;
+                    }
+                    case 2: {
+                        int id;
+                        printf("ID para busca: "); scanf("%d", &id);
+                        Tconsulta *achado = buscar_Hash(h, o, id);
+                        if(achado) {
+                            printf("Encontrado! Data: %s | Obs: %s\n", achado->data, achado->observacoes);
+                            free(achado);
+                        } else ERROR("Nao encontrado na estrutura Hash.");
+                        break;
+                    }
+                    case 3: {
+                        int id;
+                        printf("ID para remover: "); scanf("%d", &id);
+                        remover_Hash(h, o, id);
+                        printf("Removido! O espaco agora esta na Lista de Disponibilidade.\n");
+                        break;
+                    }
+                    case 4: {
+                        // Função simples para listar o que está na Hash
+                        printf("\n--- Conteudo Atual da Tabela Hash ---\n");
+                        rewind(h);
+                        THashNode node;
+                        while(fread(&node, sizeof(THashNode), 1, h) == 1) {
+                            if(node.dado.id != -1)
+                                printf("ID: %d | Data: %s | Prox: %ld\n", node.dado.id, node.dado.data, node.proximo);
+                        }
+                        // Opcional: listar overflow também
+                        break;
+                    }
+                }
+            } while (esc5 != 5);
+
+            // 3. Fechar e APAGAR os arquivos ao sair da opção 5
+            fclose(h);
+            fclose(o);5
+            remove("temp_hash.dat");
+            remove("temp_overflow.dat");
+            printf("\nBase temporaria de Hash removida com sucesso.\n");
+            pausarTela();
             break;
         }
 
