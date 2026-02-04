@@ -1,0 +1,42 @@
+
+---------------------------
+Consulta encontrada!
+Comparacoes Sequencial: 479 
+Tempo Sequencial: 0.000000 
+---------------------------
+
+---------------------------
+Paciente não encontrado!
+Comparacoes Sequencial: 1000 
+Tempo Sequencial: 0.000000 
+---------------------------
+
+---------------------------
+Paciente encontrado!
+Comparacoes Sequencial: 136 
+Tempo Sequencial: 0.000000 
+---------------------------
+
+---------------------------
+Medico encontrado!
+Comparacoes Sequencial: 123 
+Tempo Sequencial: 0.000000 
+---------------------------
+
+---------------------------
+Paciente nao encontrado!
+Comparacoes Sequencial: 1000 
+Tempo Sequencial: 0.001000 
+---------------------------
+
+---------------------------
+Paciente encontrado!
+Comparacoes Sequencial: 401 
+Tempo Sequencial: 0.001000 
+---------------------------
+
+---------------------------
+Medico encontrado!
+Comparacoes Sequencial: 123 
+Tempo Sequencial: 0.001000 
+---------------------------
