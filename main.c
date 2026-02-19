@@ -646,7 +646,7 @@ int main()
 
             // 3. Fechar e APAGAR os arquivos ao sair da opção 5
             fclose(h);
-            fclose(o);5
+            fclose(o);
             remove("temp_hash.dat");
             remove("temp_overflow.dat");
             printf("\nBase temporaria de Hash removida com sucesso.\n");
